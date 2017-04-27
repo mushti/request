@@ -9,4 +9,4 @@ componser require phpraptor\request
 ```
 
 ### License
-This package is released under the [MIT License] (https://github.com/phpraptor/request/blob/master/LICENSE).
+This package is released under the [MIT License](https://github.com/phpraptor/request/blob/master/LICENSE).
