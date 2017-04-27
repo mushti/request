@@ -1,2 +1,10 @@
-# request
-Light weight class to wrap the incoming request in one single object.
+Raptor Request
+==============
+Light weight classe to wrap the incoming HTTP request in single object.
+
+Installation
+------------
+To install, just run the following composer command.
+```
+componser require phpraptor\request
+```
