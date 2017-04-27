@@ -455,7 +455,7 @@ class Http
      *
      * @throws \UnexpectedValueException when the host name is invalid
      */
-    public function host($port = false)
+    public function host()
     {
         if ($this->host === null) {
             if (isset($_SERVER['HTTP_HOST']) && !$this->host = $_SERVER['HTTP_HOST']) {
@@ -475,8 +475,6 @@ class Http
                 throw new \Exception(sprintf('Invalid Host "%s"', $this->host));
             }
         }
-
-        if ($port === false) return $this->host;
 
         $scheme = $this->scheme();
         $port = $this->port();
