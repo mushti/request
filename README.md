@@ -1,6 +1,6 @@
 Raptor Request
 ==============
-Light weight class to wrap the incoming HTTP request in one single object.
+Raptor Request is a light weight class to wrap the incoming HTTP request in one single object.
 
 Documentation
 -------------
@@ -10,7 +10,7 @@ To install, just run the following composer command.
 composer require phpraptor\request
 ```
 
-### Instantiate the Request Object
+### The Request Object
 Here is an example to use the Raptor Request library.
 ```php
 use Raptor\Request\Http
@@ -44,6 +44,25 @@ $request->query('john');
 
 // Output
 'doe'
+```
+
+### Request Body Parameters
+To get all the request body parameters ($_POST), call the `params()` method.
+```php
+$request->params();
+
+// Output
+[
+    'username' => 'phpraptor',
+    'password' => 'johndoe'
+]
+```
+If you want get a particular request body parameter, call the `param()` method and pass the required key as the argument.
+```php
+$request->param('username');
+
+// Output
+'phpraptor'
 ```
 
 ### License
