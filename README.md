@@ -141,12 +141,55 @@ $request->headers();
 ```
 If you want get a particular request header, call the `header()` method and pass the required key as the argument.
 ```php
-$request->session('HTTP_HOST');
+$request->header('HTTP_HOST');
 
 // Example output:
 'localhost'
 ```
-### Request Client
+### Request URI
+To get the request URI, call the `uri()` method.
+```php
+$request->uri();
+
+// Example output:
+'/company/about'
+```
+### Scheme
+To get the protocol being used by the request, call the `scheme()` method.
+```php
+$request->scheme();
+
+// Example output:
+'http'
+```
+Supported schemes include:
+- `http` for non-encrypted request
+- `https` for encrypted request
+### Host
+To get the HTTP host being requested, call the `host()` method.
+```php
+$request->host();
+
+// Example output:
+'localhost'
+```
+### Port
+To get the port on which the request is made, call the `port()` method.
+```php
+$request->port();
+
+// Example output:
+80
+```
+### IP Address
+To get the IP address from where the request was made, call the `ip()` method.
+```php
+$request->ip();
+
+// Example output:
+'::1'
+```
+### Requesting Client
 To get the requesting client or the browser, call the `client()` method.
 ```php
 $request->client();
@@ -161,13 +204,29 @@ Supported clients include:
 - `chrome` for Google Chrome
 - `safari` for Safari
 - `ie` for Microsoft Internet Explorer
-### Client's IP
-To get the client's IP address, call the `ip()` method.
+### Response Format
+To get the required response body format supported by the client, call the `format()` method.
 ```php
-$request->ip();
+$request->format();
 
 // Example output:
-'::1'
+'application/json'
+```
+### Language
+To get the language supported by the client, call the `locale()` method.
+```php
+$request->locale();
+
+// Example output:
+'en-US,en;q=0.8'
+```
+### Character Set
+To get the response body character set supported by the client, call the `charset()` method.
+```php
+$request->charset();
+
+// Example output:
+'utf8'
 ```
 ### License
 This package is released under the [MIT License](https://github.com/phpraptor/request/blob/master/LICENSE).
