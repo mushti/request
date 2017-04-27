@@ -19,17 +19,24 @@ $request = new Http;
 ```
 
 ### Request Method
-To get the incoming request method or the server verb, use the `method()` method.
+To get the incoming request method or the server verb, call the `method()` method.
 ```
 $request->method();
+
+/*
+[
+	'hello' => 'world',
+	'john' => 'doe'
+]
+*/
 ```
 
 ### Query String Parameters
-To get all the query string parameters ($_GET), use the `queries()` method.
+To get all the query string parameters ($_GET), call the `queries()` method.
 ```
 $request->queries();
 ```
-To get a particular query string parameter, use the `query()` method.
+If you want get a particular query string parameter, call the `query()` method and pass the required key as the argument.
 ```
 $request->query('john');
 ```
