@@ -12,7 +12,7 @@ composer require phpraptor\request
 
 ### Instantiate the Request Object
 Here is an example to use the Raptor Request library.
-```
+```php
 use Raptor\Request\Http
 
 $request = new Http;
@@ -24,20 +24,26 @@ To get the incoming request method or the server verb, call the `method()` metho
 $request->method();
 
 // Output
-[
-	'hello' => 'world',
-	'john' => 'doe'
-]
+'POST'
 ```
 
 ### Query String Parameters
 To get all the query string parameters ($_GET), call the `queries()` method.
 ```php
 $request->queries();
+
+// Output
+[
+    'hello' => 'world',
+    'john' => 'doe'
+]
 ```
 If you want get a particular query string parameter, call the `query()` method and pass the required key as the argument.
 ```php
 $request->query('john');
+
+// Output
+'doe'
 ```
 
 ### License
