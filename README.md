@@ -47,7 +47,7 @@ $request->line()->method();   // method token
 $request->line()->target();   // request-target
 $request->line()->version();  // HTTP-version
 ```
-### Method token
+### - Method token
 To get the method token or the request method, call the `method()` function.
 ```php
 $request->line()->method();
@@ -56,14 +56,22 @@ $request->method();    // short approach
 // Example output:
 'POST'
 ```
-### Request-target
+### - Request-target
 [Section 5.3](https://tools.ietf.org/html/rfc7230#section-5.3) of the [RFC7230](https://tools.ietf.org/html/rfc7230) states,
 
 > There are four distinct formats for the request-target, depending on both the method being requested and whether the request is to a proxy.
 > 
 > request-target = origin-form / absolute-form / authority-form / asterisk-form
 
-#### Target Path (Request URI)
+According to [Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-5.3.1) of the [RFC7230](https://tools.ietf.org/html/rfc7230),
+
+> The most common form of request-target is the origin-form.
+> 
+> origin-form    = absolute-path [ "?" query ]
+
+The `origin-form` has two sub-components, the `absolute-path` and the `query string parameters`.
+
+#### Absolute-path (Request URI)
 To get the target path or the request URI, call the `path()` method.
 ```php
 $request->line()->target()->path();
@@ -72,7 +80,7 @@ $request->line()->target()->path();
 '/company/about'
 ```
 #### Query String Parameters ($_GET)
-According to [Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-5.3.1) of the [RFC7230](https://tools.ietf.org/html/rfc7230), if the format of the `request-target` is `origin-form`, the `request-target` can have query string parameters. To get all the query string parameters, call the `query()` method.
+, if the format of the `request-target` is `origin-form`, the `request-target` can have query string parameters. To get all the query string parameters, call the `query()` method.
 ```php
 $request->line()->target()->query();
 $request->query();    // short approach
@@ -99,7 +107,7 @@ $request->query('search', 'default value');    // short approach
 // Example output:
 'default value'
 ```
-### HTTP-version
+### - HTTP-version
 To get the HTTP-version, call the `version()` method.
 ```php
 $request->line()->version();
