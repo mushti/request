@@ -4,7 +4,7 @@
 
 Introduction
 ------------
-Raptor Request is a light weight tool built using the SOLID principles to wrap the incoming HTTP request in one single object. The struture of the request object is based on [RFC 7230](https://tools.ietf.org/html/rfc7230) and [RFC 7231](https://tools.ietf.org/html/rfc7231).
+Raptor Request is a light weight tool built using the SOLID principles to wrap the incoming HTTP request in one single object. The struture of the request object is based on [RFC7230](https://tools.ietf.org/html/rfc7230) and [RFC 7231](https://tools.ietf.org/html/rfc7231).
 
 Installation
 ------------
@@ -22,20 +22,20 @@ use Raptor\Request\Http;
 $request = new Http;
 ```
 ### Components
-As stated in [Section 3](https://tools.ietf.org/html/rfc7230#section-3) of the [RFC 7230](https://tools.ietf.org/html/rfc7230),
-```
-All HTTP/1.1 messages consist of a start-line followed by a sequence
-of octets in a format similar to the Internet Message Format
-[[RFC5322](https://tools.ietf.org/html/rfc5322)]: zero or more header fields (collectively referred to as
-the "headers" or the "header section"), an empty line indicating the
-end of the header section, and an optional message body.
+As stated in [Section 3](https://tools.ietf.org/html/rfc7230#section-3) of the [RFC7230](https://tools.ietf.org/html/rfc7230),
 
-HTTP-message   = start-line
-                 *( header-field CRLF )
-                 CRLF
-                 [ message-body ]
-```
-According to [Section 3.1](https://tools.ietf.org/html/rfc7230#section-3.1) of the [RFC 7230](https://tools.ietf.org/html/rfc7230), for a request message the `start-line` will be a `request-line`.
+> All HTTP/1.1 messages consist of a start-line followed by a sequence
+> of octets in a format similar to the Internet Message Format
+> [RFC5322]: zero or more header fields (collectively referred to as
+> the "headers" or the "header section"), an empty line indicating the
+> end of the header section, and an optional message body.
+> 
+> HTTP-message   = start-line
+>                  *( header-field CRLF )
+>                  CRLF
+>                  [ message-body ]
+
+According to [Section 3.1](https://tools.ietf.org/html/rfc7230#section-3.1) of the [RFC7230](https://tools.ietf.org/html/rfc7230), for a request message the `start-line` will be a `request-line`.
 So the request object has three components that you can access by calling `line()`, `header()` and `body()` methods on the request object.
 ```php
 $request->line();    // request-line
@@ -45,7 +45,7 @@ $request->body();    // message body
 
 Request-line
 ------------
-[Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-3.1.1) of the [RFC 7230](https://tools.ietf.org/html/rfc7230) states,
+[Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-3.1.1) of the [RFC7230](https://tools.ietf.org/html/rfc7230) states,
 ```
 A request-line begins with a method token, followed by a single space
 (SP), the request-target, another single space (SP), the protocol
@@ -69,7 +69,7 @@ $request->method();    // short approach
 'POST'
 ```
 ### Request-target
-[Section 5.3](https://tools.ietf.org/html/rfc7230#section-5.3) of the [RFC 7230](https://tools.ietf.org/html/rfc7230) states,
+[Section 5.3](https://tools.ietf.org/html/rfc7230#section-5.3) of the [RFC7230](https://tools.ietf.org/html/rfc7230) states,
 ```
 There are four distinct formats for the request-target,
 depending on both the method being requested and whether the request
@@ -89,7 +89,7 @@ $request->line()->target()->path();
 '/company/about'
 ```
 #### Query String Parameters ($_GET)
-According to [Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-5.3.1) of the [RFC 7230](https://tools.ietf.org/html/rfc7230), if the format of the `request-target` is `origin-form`, the `request-target` can have query string parameters. To get all the query string parameters, call the `query()` method.
+According to [Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-5.3.1) of the [RFC7230](https://tools.ietf.org/html/rfc7230), if the format of the `request-target` is `origin-form`, the `request-target` can have query string parameters. To get all the query string parameters, call the `query()` method.
 ```php
 $request->line()->target()->query();
 $request->query();    // short approach
@@ -187,7 +187,7 @@ $request->cookie('FONTSIZE', '14px');    // short approach
 
 Message Body
 ------------
-[Section 3.3](https://tools.ietf.org/html/rfc7230#section-3.3) of the [RFC 7230](https://tools.ietf.org/html/rfc7230) states,
+[Section 3.3](https://tools.ietf.org/html/rfc7230#section-3.3) of the [RFC7230](https://tools.ietf.org/html/rfc7230) states,
 ```
 The message body (if any) of an HTTP message is used to carry the
 payload body of that request
