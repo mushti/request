@@ -21,15 +21,14 @@ $request = new Http;
 ```
 As stated in [Section 3](https://tools.ietf.org/html/rfc7230#section-3) of the [RFC7230](https://tools.ietf.org/html/rfc7230),
 
-> All HTTP/1.1 messages consist of a start-line followed by a sequence
-> of octets in a format similar to the Internet Message Format
-> [RFC5322]: zero or more header fields (collectively referred to as
-> the "headers" or the "header section"), an empty line indicating the
-> end of the header section, and an optional message body.
+> All HTTP/1.1 messages consist of a start-line followed by a sequence of octets in a format similar to the Internet Message Format [RFC5322]: zero or more header fields (collectively referred to as the "headers" or the "header section"), an empty line indicating the end of the header section, and an optional message body.
 > 
 > HTTP-message   = start-line
+> 
 >                  *( header-field CRLF )
+> 
 >                  CRLF
+> 
 >                  [ message-body ]
 
 According to [Section 3.1](https://tools.ietf.org/html/rfc7230#section-3.1) of the [RFC7230](https://tools.ietf.org/html/rfc7230), for a request message the `start-line` will be a `request-line`.
@@ -43,13 +42,11 @@ $request->body();    // message body
 Request-line
 ------------
 [Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-3.1.1) of the [RFC7230](https://tools.ietf.org/html/rfc7230) states,
-```
-A request-line begins with a method token, followed by a single space
-(SP), the request-target, another single space (SP), the protocol
-version, and ends with CRLF.
 
-request-line   = method SP request-target SP HTTP-version CRLF
-```
+> A request-line begins with a method token, followed by a single space (SP), the request-target, another single space (SP), the protocol version, and ends with CRLF.
+> 
+> request-line   = method SP request-target SP HTTP-version CRLF
+
 This means that the request-line itself is further divided into three sub-components.
 ```php
 $request->line()->method();   // method token
@@ -67,16 +64,17 @@ $request->method();    // short approach
 ```
 ### Request-target
 [Section 5.3](https://tools.ietf.org/html/rfc7230#section-5.3) of the [RFC7230](https://tools.ietf.org/html/rfc7230) states,
-```
-There are four distinct formats for the request-target,
-depending on both the method being requested and whether the request
-is to a proxy.
 
-request-target = origin-form
-                 / absolute-form
-                 / authority-form
-                 / asterisk-form
-```
+> There are four distinct formats for the request-target, depending on both the method being requested and whether the request is to a proxy.
+> 
+> request-target = origin-form
+> 
+>                 / absolute-form
+> 
+>                 / authority-form
+> 
+>                 / asterisk-form
+
 #### Target Path (Request URI)
 To get the target path or the request URI, call the `path()` method.
 ```php
@@ -185,10 +183,9 @@ $request->cookie('FONTSIZE', '14px');    // short approach
 Message Body
 ------------
 [Section 3.3](https://tools.ietf.org/html/rfc7230#section-3.3) of the [RFC7230](https://tools.ietf.org/html/rfc7230) states,
-```
-The message body (if any) of an HTTP message is used to carry the
-payload body of that request
-```
+
+> The message body (if any) of an HTTP message is used to carry the payload body of that request
+
 The payload body can contain request body parameters i.e. `$_POST` and any uploaded files, i.e. `$_FILES`.
 
 ### Request Body Parameters ($_POST)
