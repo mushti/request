@@ -4,7 +4,7 @@
 
 Introduction
 ------------
-Raptor Request is a light weight tool built using the SOLID pattern to wrap the incoming HTTP request in one single object. The struture of the request object is based on [RFC 7230](https://tools.ietf.org/html/rfc7230) and [RFC 7231](https://tools.ietf.org/html/rfc7231).
+Raptor Request is a light weight tool built using the SOLID principles to wrap the incoming HTTP request in one single object. The struture of the request object is based on [RFC 7230](https://tools.ietf.org/html/rfc7230) and [RFC 7231](https://tools.ietf.org/html/rfc7231).
 
 Installation
 ------------
@@ -131,7 +131,7 @@ $request->header()->all();
     'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0',
     'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5',
-    'HTTP_ACCEPT_ENCODING' => string 'gzip, deflate',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
     'HTTP_COOKIE' => 'PHPSESSID=t8ih495a8fap4agrkk9ectn2r5',
     'HTTP_CONNECTION' => 'keep-alive'
 ]
@@ -162,10 +162,10 @@ $request->cookie();    // short approach
     'PHPSESSID' => 'lopaavhboml1ua6a539b8u0rm7'
 ]
 ```
-If you want to get a cookie, call the `cookie()` method and pass the required key as the argument.
+If you want to get a particular cookie, call the `cookie()` method and pass the required key as the argument.
 ```php
 $request->header()->cookie('PHPSESSID');
-$request->cookie(PHPSESSID');    // short approach
+$request->cookie('PHPSESSID');    // short approach
 
 // Example output:
 'lopaavhboml1ua6a539b8u0rm7'
@@ -189,7 +189,7 @@ payload body of that request
 The payload body can contain request body parameters i.e. `$_POST` and any uploaded files, i.e. `$_FILES`.
 
 #### Request Body Parameters ($_POST)
-To get all the request body parameters, call the `params()` method.
+To get all the request body parameters, call the `param()` method.
 ```php
 $request->body()->param();
 $request->param();    // short approach
