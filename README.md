@@ -68,11 +68,11 @@ $request->method();    // short approach
 > There are four distinct formats for the request-target, depending on both the method being requested and whether the request is to a proxy.
 > 
 > request-target = origin-form
-> 
+>
 >                 / absolute-form
-> 
+>
 >                 / authority-form
-> 
+>
 >                 / asterisk-form
 
 #### Target Path (Request URI)
