@@ -36,10 +36,10 @@ HTTP-message   = start-line
                  [ message-body ]
 ```
 According to [Section 3.1](https://tools.ietf.org/html/rfc7230#section-3.1) of the [RFC 7230](https://tools.ietf.org/html/rfc7230), for a request message the `start-line` will be a `request-line`.
-So the request object have three components that you can access by calling `line()`, `header()` and `body()` methods on the request object.
+So the request object has three components that you can access by calling `line()`, `header()` and `body()` methods on the request object.
 ```php
 $request->line();    // request-line
-$request->header();  // header field
+$request->header();  // header fields
 $request->body();    // message body
 ```
 
@@ -53,7 +53,13 @@ version, and ends with CRLF.
 
 request-line   = method SP request-target SP HTTP-version CRLF
 ```
-### Method Token (Request Method)
+This means that the request-line itself is further divided into three sub-components.
+```php
+$request->line()->method();   // method token
+$request->line()->target();   // request-target
+$request->line()->version();  // HTTP-version
+```
+### Method token
 To get the method token or the request method, call the `method()` function.
 ```php
 $request->line()->method();
@@ -119,8 +125,8 @@ $request->line()->version();
 'HTTP/1.1'
 ```
 
-Header Fields (Request Headers)
--------------------------------
+Header Fields
+-------------
 To get all the header fields or the request headers, call the `all()` method on the `header()` method of the request object.
 ```php
 $request->header()->all();
@@ -151,7 +157,7 @@ $request->header()->get('HTTP_EXAMPLE', 'default value');
 'default value'
 ```
 
-#### Cookies ($_COOKIE)
+### Cookies ($_COOKIE)
 The cookies are sent along with the request headers, so to get the cookies, call the `cookie()` method.
 ```php
 $request->header()->cookie();
@@ -188,7 +194,7 @@ payload body of that request
 ```
 The payload body can contain request body parameters i.e. `$_POST` and any uploaded files, i.e. `$_FILES`.
 
-#### Request Body Parameters ($_POST)
+### Request Body Parameters ($_POST)
 To get all the request body parameters, call the `param()` method.
 ```php
 $request->body()->param();
@@ -217,7 +223,7 @@ $request->param('category_id', 30);    // short approach
 30
 ```
 
-#### Uploaded Files ($_FILE)
+### Uploaded Files ($_FILE)
 To get all the uploaded files, call the `files()` method.
 ```php
 $request->body()->files();
@@ -249,7 +255,7 @@ $request->file('image');    // short approach
 ]
 ```
 
-#### Content Length
+### Content Length
 To get the content length of the message body, call the `contentLength()` method.
 ```php
 $request->body()->contentLength();
@@ -258,7 +264,7 @@ $request->body()->contentLength();
 135467
 ```
 
-#### Content Type
+### Content Type
 To get the content type of the message body, call the `contentType()` method.
 ```php
 $request->body()->contentType();
