@@ -92,7 +92,7 @@ class Authorization
             // Decode AUTHORIZATION header into PHP_AUTH_PW when authorization header is basic
             $token = explode(':', base64_decode($this->token()), 2);
             if (count($token) == 2) {
-                return $this->password = $_SERVER['PHP_AUTH_PW']) = $token[1];
+                return $this->password = $_SERVER['PHP_AUTH_PW'] = $token[1];
             }
         }
      
