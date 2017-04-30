@@ -64,14 +64,11 @@ class Authorization
         	return $this->username = $_SERVER['PHP_AUTH_USER'];
         }
 
-        if ($this->field()) {
-        	if (0 === stripos($this->field, 'basic ')) {
-                // Decode AUTHORIZATION header into PHP_AUTH_USER and PHP_AUTH_PW when authorization header is basic
-                $exploded = explode(':', base64_decode(substr($this->field, 6)), 2);
-                if (count($exploded) == 2) {
-                    list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = $exploded;
-                    return $this->username = $_SERVER['PHP_AUTH_PW'];
-                }
+        if (strtolower($this->type()) == 'basic') {
+            // Decode AUTHORIZATION header into PHP_AUTH_USER when authorization header is basic
+            $token = explode(':', base64_decode($this->token()), 1);
+            if (count($token) == 1) {
+                return $this->username = $_SERVER['PHP_AUTH_USER'] = $token[0];
             }
         }
 
@@ -91,14 +88,11 @@ class Authorization
         	return $this->password = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : '';
         }
 
-        if ($this->field()) {
-        	if (0 === stripos($this->field, 'basic ')) {
-                // Decode AUTHORIZATION header into PHP_AUTH_USER and PHP_AUTH_PW when authorization header is basic
-                $exploded = explode(':', base64_decode(substr($this->field, 6)), 2);
-                if (count($exploded) == 2) {
-                    list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = $exploded;
-                    return $this->password = $_SERVER['PHP_AUTH_PW'];
-                }
+        if (strtolower($this->type()) == 'basic') {
+            // Decode AUTHORIZATION header into PHP_AUTH_PW when authorization header is basic
+            $token = explode(':', base64_decode($this->token()), 2);
+            if (count($token) == 2) {
+                return $this->password = $_SERVER['PHP_AUTH_PW']) = $token[1];
             }
         }
      
@@ -144,7 +138,7 @@ class Authorization
         }
         // PHP_AUTH_USER
         if (isset($_SERVER['PHP_AUTH_USER'])) {
-            return $this->field = 'Basic '.base64_encode($this->username().':'.$this->password());
+            return $this->field = 'Basic '.base64_encode($_SERVER['PHP_AUTH_USER'].':'.$_SERVER['PHP_AUTH_PW']);
         }
         // PHP_AUTH_DIGEST
         if (isset($_SERVER['PHP_AUTH_DIGEST'])) {
