@@ -2,10 +2,6 @@
 [![Code Climate](https://codeclimate.com/github/phpraptor/request/badges/gpa.svg)](https://codeclimate.com/github/phpraptor/request)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-Introduction
-------------
-Raptor Request is a light weight tool built using the SOLID principles to wrap the incoming HTTP request in one single object. The struture of the request object is based on [RFC7230](https://tools.ietf.org/html/rfc7230) and [RFC 7231](https://tools.ietf.org/html/rfc7231).
-
 Installation
 ------------
 To install, just run the following composer command.
@@ -13,15 +9,16 @@ To install, just run the following composer command.
 composer require phpraptor\request
 ```
 
-The Request Object
-------------------
+Introduction
+------------
+Raptor Request is a light weight tool built using the SOLID principles to wrap the incoming HTTP request in one single object. The struture of the request object is based on [RFC7230](https://tools.ietf.org/html/rfc7230) and [RFC 7231](https://tools.ietf.org/html/rfc7231).
+
 To capture the request, simply create an object of the `Http` class.
 ```php
 use Raptor\Request\Http;
 
 $request = new Http;
 ```
-### Components
 As stated in [Section 3](https://tools.ietf.org/html/rfc7230#section-3) of the [RFC7230](https://tools.ietf.org/html/rfc7230),
 
 > All HTTP/1.1 messages consist of a start-line followed by a sequence
