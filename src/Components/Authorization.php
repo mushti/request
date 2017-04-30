@@ -122,19 +122,17 @@ class Authorization
 
         // HTTP_AUTHORIZATION
     	if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-	        if (empty($_SERVER['PHP_AUTH_DIGEST']) && (0 === stripos($_SERVER['HTTP_AUTHORIZATION'], 'digest '))) {
-	            // In some circumstances PHP_AUTH_DIGEST needs to be set.
-	            $_SERVER['PHP_AUTH_DIGEST'] = $_SERVER['HTTP_AUTHORIZATION'];
-	        }
-            return $this->field = $_SERVER['HTTP_AUTHORIZATION'];
+            $this->field = $_SERVER['HTTP_AUTHORIZATION'];
         }
         // REDIRECT_HTTP_AUTHORIZATION
-        if (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-	        if (empty($_SERVER['PHP_AUTH_DIGEST']) && (0 === stripos($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 'digest '))) {
+        elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+            $this->field = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+        }
+        if ($this->field) {
+	        if (empty($_SERVER['PHP_AUTH_DIGEST']) && (0 === stripos($this->field, 'digest '))) {
 	            // In some circumstances PHP_AUTH_DIGEST needs to be set.
-	            $_SERVER['PHP_AUTH_DIGEST'] = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+	            return $_SERVER['PHP_AUTH_DIGEST'] = $this->field;
 	        }
-        	return $this->field = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
         }
         // PHP_AUTH_USER
         if (isset($_SERVER['PHP_AUTH_USER'])) {
