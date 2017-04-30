@@ -130,9 +130,9 @@ class Authorization
         }
         // REDIRECT_HTTP_AUTHORIZATION
         if (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-	        if (empty($_SERVER['PHP_AUTH_DIGEST']) && (0 === stripos($_SERVER['HTTP_AUTHORIZATION'], 'digest '))) {
+	        if (empty($_SERVER['PHP_AUTH_DIGEST']) && (0 === stripos($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 'digest '))) {
 	            // In some circumstances PHP_AUTH_DIGEST needs to be set.
-	            $_SERVER['PHP_AUTH_DIGEST'] = $_SERVER['HTTP_AUTHORIZATION'];
+	            $_SERVER['PHP_AUTH_DIGEST'] = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
 	        }
         	return $this->field = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
         }
