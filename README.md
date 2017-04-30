@@ -23,13 +23,7 @@ As stated in [Section 3](https://tools.ietf.org/html/rfc7230#section-3) of the [
 
 > All HTTP/1.1 messages consist of a start-line followed by a sequence of octets in a format similar to the Internet Message Format [RFC5322]: zero or more header fields (collectively referred to as the "headers" or the "header section"), an empty line indicating the end of the header section, and an optional message body.
 > 
-> HTTP-message   = start-line
-> 
->                  *( header-field CRLF )
-> 
->                  CRLF
-> 
->                  [ message-body ]
+> HTTP-message   = start-line *( header-field CRLF ) CRLF [ message-body ]
 
 According to [Section 3.1](https://tools.ietf.org/html/rfc7230#section-3.1) of the [RFC7230](https://tools.ietf.org/html/rfc7230), for a request message the `start-line` will be a `request-line`.
 So the request object has three components that you can access by calling `line()`, `header()` and `body()` methods on the request object.
@@ -67,13 +61,7 @@ $request->method();    // short approach
 
 > There are four distinct formats for the request-target, depending on both the method being requested and whether the request is to a proxy.
 > 
-> request-target = origin-form
->
->                 / absolute-form
->
->                 / authority-form
->
->                 / asterisk-form
+> request-target = origin-form / absolute-form / authority-form / asterisk-form
 
 #### Target Path (Request URI)
 To get the target path or the request URI, call the `path()` method.
