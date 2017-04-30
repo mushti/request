@@ -2,15 +2,13 @@
 [![Code Climate](https://codeclimate.com/github/phpraptor/request/badges/gpa.svg)](https://codeclimate.com/github/phpraptor/request)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-Installation
-------------
-To install, just run the following composer command.
+# Introduction
+Raptor Request is a light weight PHP library built using the SOLID principles to wrap the incoming HTTP request in one single object, with a structure based on [[RFC7230](https://tools.ietf.org/html/rfc7230)].
+
+To install the library , just run the following composer command.
 ```
 composer require phpraptor\request
 ```
-
-# Introduction
-Raptor Request is a light weight tool built using the SOLID principles to wrap the incoming HTTP request in one single object. The struture of the request object is based on [[RFC7230](https://tools.ietf.org/html/rfc7230)] and [RFC 7231](https://tools.ietf.org/html/rfc7231).
 
 To capture the request, simply create an object of the `Http` class.
 ```php
@@ -24,8 +22,9 @@ As stated in [Section 3](https://tools.ietf.org/html/rfc7230#section-3) of the [
 > 
 > HTTP-message   = start-line *( header-field CRLF ) CRLF [ message-body ]
 
-According to [Section 3.1](https://tools.ietf.org/html/rfc7230#section-3.1) of the [[RFC7230](https://tools.ietf.org/html/rfc7230)], for a request message the `start-line` will be a `request-line`.
-So the request object has three components that you can access by calling `line()`, `header()` and `body()` methods on the request object.
+Or, in simple words, a request message has three components, a `request-line` (according to [Section 3.1](https://tools.ietf.org/html/rfc7230#section-3.1) of the [[RFC7230](https://tools.ietf.org/html/rfc7230)], for a request message the `start-line` will be a `request-line`), followed by `header-fields` and then a `message-body`.
+
+You can access these three components by calling `line()`, `header()` and `body()` methods on the request object.
 ```php
 $request->line();    // request-line
 $request->header();  // header fields
@@ -105,7 +104,7 @@ $request->query('search', 'default value');    // short approach
 // Example output:
 'default value'
 ```
-* ### HTTP-version
+### HTTP-version
 To get the HTTP-version, call the `version()` method.
 ```php
 $request->line()->version();
@@ -145,8 +144,8 @@ $request->header()->get('HTTP_EXAMPLE', 'default value');
 'default value'
 ```
 
-* ### Cookies ($_COOKIE)
-The cookies are sent along with the request headers, so to get the cookies, call the `cookie()` method.
+### Cookies ($_COOKIE)
+The browser cookies are sent to the server with the header fields, so to get all the cookies, call the `cookie()` method on the `header()` method of the request object.
 ```php
 $request->header()->cookie();
 $request->cookie();    // short approach
@@ -178,7 +177,7 @@ $request->cookie('FONTSIZE', '14px');    // short approach
 
 > The message body (if any) of an HTTP message is used to carry the payload body of that request
 
-The payload body can contain request body parameters i.e. `$_POST` and any uploaded files, i.e. `$_FILES`.
+The payload body can contain request body parameters, i.e. `$_POST`, and any uploaded files, i.e. `$_FILES`.
 
 ### Request Body Parameters ($_POST)
 To get all the request body parameters, call the `param()` method.
