@@ -9,8 +9,7 @@ To install, just run the following composer command.
 composer require phpraptor\request
 ```
 
-Introduction
-------------
+# Introduction
 Raptor Request is a light weight tool built using the SOLID principles to wrap the incoming HTTP request in one single object. The struture of the request object is based on [[RFC7230](https://tools.ietf.org/html/rfc7230)] and [RFC 7231](https://tools.ietf.org/html/rfc7231).
 
 To capture the request, simply create an object of the `Http` class.
@@ -33,8 +32,7 @@ $request->header();  // header fields
 $request->body();    // message body
 ```
 
-Request-line
-------------
+# Request-line
 [Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-3.1.1) of the [[RFC7230](https://tools.ietf.org/html/rfc7230)] states,
 
 > A request-line begins with a method token, followed by a single space (SP), the request-target, another single space (SP), the protocol version, and ends with CRLF.
@@ -47,7 +45,7 @@ $request->line()->method();   // method token
 $request->line()->target();   // request-target
 $request->line()->version();  // HTTP-version
 ```
-* ### Method token
+### Method token
 To get the method token or the request method, call the `method()` function.
 ```php
 $request->line()->method();
@@ -71,16 +69,16 @@ According to [Section 3.1.1](https://tools.ietf.org/html/rfc7230#section-5.3.1) 
 
 The `origin-form` has two sub-components, the `absolute-path` and the `query string parameters`.
 
-#### Absolute-path (Request URI)
-To get the target path or the request URI, call the `path()` method.
+* #### Absolute-path (Request URI)
+To get the absolute path or the request URI, call the `path()` method.
 ```php
 $request->line()->target()->path();
 
 // Example output:
 '/company/about'
 ```
-#### Query String Parameters ($_GET)
-, if the format of the `request-target` is `origin-form`, the `request-target` can have query string parameters. To get all the query string parameters, call the `query()` method.
+* #### Query String Parameters ($_GET)
+To get all the query string parameters, call the `query()` method.
 ```php
 $request->line()->target()->query();
 $request->query();    // short approach
@@ -107,7 +105,7 @@ $request->query('search', 'default value');    // short approach
 // Example output:
 'default value'
 ```
-### HTTP-version
+* ### HTTP-version
 To get the HTTP-version, call the `version()` method.
 ```php
 $request->line()->version();
@@ -116,8 +114,7 @@ $request->line()->version();
 'HTTP/1.1'
 ```
 
-Header Fields
--------------
+# Header Fields
 To get all the header fields or the request headers, call the `all()` method on the `header()` method of the request object.
 ```php
 $request->header()->all();
@@ -148,7 +145,7 @@ $request->header()->get('HTTP_EXAMPLE', 'default value');
 'default value'
 ```
 
-### Cookies ($_COOKIE)
+* ### Cookies ($_COOKIE)
 The cookies are sent along with the request headers, so to get the cookies, call the `cookie()` method.
 ```php
 $request->header()->cookie();
@@ -176,8 +173,7 @@ $request->cookie('FONTSIZE', '14px');    // short approach
 '14px'
 ```
 
-Message Body
-------------
+# Message Body
 [Section 3.3](https://tools.ietf.org/html/rfc7230#section-3.3) of the [[RFC7230](https://tools.ietf.org/html/rfc7230)] states,
 
 > The message body (if any) of an HTTP message is used to carry the payload body of that request
