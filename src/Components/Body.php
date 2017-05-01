@@ -9,7 +9,7 @@ class Body
      *
      * @var array
      */
-	protected $param;
+    protected $param;
 
     /**
      * Uploaded files ($_FILES).
@@ -46,9 +46,13 @@ class Body
             if (
                 isset($_SERVER['CONTENT_TYPE']) && 
                 $_SERVER['CONTENT_TYPE'] === 'application/x-www-form-urlencoded'
-            ) parse_str(file_get_contents("php://input"), $this->param);
+            ) {
+                parse_str(file_get_contents("php://input"), $this->param);
+            }
         }
-        if ($key === null) return $this->param;
+        if ($key === null) {
+            return $this->param;
+        }
         return isset($this->param[$key]) ? $this->param[$key] : $default;
     }
 
@@ -60,8 +64,12 @@ class Body
      */
     public function files($key = null)
     {
-        if ($this->files === null) $this->files = $_FILES;
-        if ($key === null) return $this->files;
+        if ($this->files === null) {
+            $this->files = $_FILES;
+        }
+        if ($key === null) {
+            return $this->files;
+        }
         return isset($this->files[$key]) ? $this->files[$key] : null;
     }
 
@@ -72,7 +80,9 @@ class Body
      */
     public function contentLength()
     {
-        if ($this->contentLength) return $this->contentLength;
+        if ($this->contentLength) {
+            return $this->contentLength;
+        }
         return $this->contentLength = isset($_SERVER['CONTENT_LENGTH']) ? (int) $_SERVER['CONTENT_LENGTH'] : null;
     }
 
@@ -83,7 +93,9 @@ class Body
      */
     public function contentType()
     {
-        if ($this->contentType) return $this->contentType;
+        if ($this->contentType) {
+            return $this->contentType;
+        }
         return $this->contentType = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : null;
     }
 }

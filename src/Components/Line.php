@@ -42,7 +42,9 @@ class Line
      */
     public function method()
     {
-        if ($this->method !== null) return $this->method;
+        if ($this->method !== null) {
+            return $this->method;
+        }
         $this->method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : false;
         if ($this->method === 'POST' && !empty($_SERVER['X-HTTP-METHOD-OVERRIDE'])) {
             return $this->method = strtoupper($_SERVER['X-HTTP-METHOD-OVERRIDE']);
@@ -70,7 +72,9 @@ class Line
      */
     public function version()
     {
-        if ($this->version !== null) return $this->version;
+        if ($this->version !== null) {
+            return $this->version;
+        }
         return $this->version = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : false;
     }
 }
