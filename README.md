@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/phpraptor/request.svg?branch=master)](https://travis-ci.org/phpraptor/request)
 [![Code Climate](https://codeclimate.com/github/phpraptor/request/badges/gpa.svg)](https://codeclimate.com/github/phpraptor/request)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/phpraptor/request/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/phpraptor/request/?branch=master)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 # Introduction
