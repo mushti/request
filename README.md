@@ -7,7 +7,7 @@ Raptor Request is a light weight PHP library built using the SOLID principles to
 
 To install the library , just run the following composer command.
 ```
-composer require phpraptor\request
+composer require phpraptor/request v0.1-beta
 ```
 
 To capture the request, simply create an object of the `Http` class.
