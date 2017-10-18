@@ -111,8 +111,8 @@ class HttpRequestTest extends TestCase
 		$this->assertEquals(true, is_array($this->request->body()->files()));
 		$this->assertEquals(true, is_array($this->request->body()->files('image')));
 		// Test alias for body files.
-		$this->assertEquals(true, is_array($this->request->files()));
-		$this->assertEquals(true, is_array($this->request->files('image')));
+		$this->assertEquals(true, is_array($this->request->uploads()));
+		$this->assertEquals(true, is_array($this->request->uploads('image')));
 		// Test body content.
 		$this->assertEquals($_SERVER['CONTENT_LENGTH'], $this->request->body()->contentLength());
 		$this->assertEquals($_SERVER['CONTENT_TYPE'], $this->request->body()->contentType());

@@ -213,7 +213,7 @@ $request->param('category_id', 30);    // short approach
 To get all the uploaded files, call the `files()` method.
 ```php
 $request->body()->files();
-$request->files();    // short approach
+$request->uploads();    // short approach
 
 // Example output:
 [

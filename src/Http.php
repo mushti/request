@@ -122,7 +122,7 @@ class Http
      * @param  mixed $default (optional)
      * @return  mixed
      */
-    public function files($key = null, $default = null)
+    public function uploads($key = null, $default = null)
     {
         return $this->body()->files($key, $default);
     }
